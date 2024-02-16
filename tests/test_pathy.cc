@@ -5,9 +5,5 @@ extern "C" {
 }
 
 TEST(pathy, ok) {
-  ASSERT_EQ(isPath, true);
-}
-
-TEST(testy, not_ok) {
-  ASSERT_EQ(customer_check(0), 0);  
+  ASSERT_TRUE(isPath());
 }

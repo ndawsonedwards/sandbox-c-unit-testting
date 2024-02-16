@@ -6,4 +6,4 @@
 bool isPath();
 
 
-#endif // _PATHY_H_
+#endif // PATHY_H
