@@ -22,7 +22,7 @@ FetchContent_MakeAvailable(googletest)
 
 # Locate source files
 file(GLOB TEST_SOURCE 
-    "${PROJECT_SOURCE_DIR}/tests/googletest/*.cc")
+    "${PROJECT_SOURCE_DIR}/tests/gtest/*.cc")
 
 # Create test executable
 enable_testing()
@@ -33,12 +33,11 @@ add_executable(${TEST_PROJECT_NAME}
 
 target_include_directories (${TEST_PROJECT_NAME}
   PUBLIC
-  ${PROJECT_SOURCE_DIR}/src
-  ${googletest_SOURCE_DIR}/googletest/include/gtest
-)
+  ${PROJECT_SOURCE_DIR}/src)
 
 # Link GoogleTest to the test executable
-target_link_libraries(${TEST_PROJECT_NAME} GTest::gtest_main)
+target_link_libraries(${TEST_PROJECT_NAME} gtest GTest::gtest_main)
+
 
 include(GoogleTest)
 gtest_discover_tests(${TEST_PROJECT_NAME})
