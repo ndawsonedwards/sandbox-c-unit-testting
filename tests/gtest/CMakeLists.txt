@@ -1,10 +1,12 @@
+
+
 # Set the minimum required version for CMake
 cmake_minimum_required(VERSION 3.14)
 
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
-set(TEST_PROJECT_NAME "${PROJECT_NAME}_test")
+set(TEST_PROJECT_NAME "${PROJECT_NAME}_gtest")
 # Include GoogleTest
 include(FetchContent)
 
@@ -19,10 +21,10 @@ FetchContent_MakeAvailable(googletest)
 
 # Locate test files
 # Locate source files
-file(GLOB SRC_FILES "${PROJECT_SOURCE_DIR}/src/*.c")
-list(FILTER SRC_FILES EXCLUDE REGEX "main.c")
-message("Source : " ${SRC_FILES})
-file(GLOB_RECURSE TEST_SOURCES "*.cc")
+# file(GLOB SRC_FILES "${PROJECT_SOURCE_DIR}/src/*.c")
+# list(FILTER SRC_FILES EXCLUDE REGEX "main.c")
+
+file(GLOB TEST_SOURCES "${PROJECT_SOURCE_DIR}/tests/gtest/*.cc")
 
 # Create test executable
 enable_testing()
@@ -42,5 +44,3 @@ target_link_libraries(${TEST_PROJECT_NAME} GTest::gtest_main)
 
 include(GoogleTest)
 gtest_discover_tests(${TEST_PROJECT_NAME})
-
-
