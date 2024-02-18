@@ -12,6 +12,7 @@ TEST_GROUP_RUNNER(Mathy)
 TEST_GROUP_RUNNER(Pathy)
 {
     RUN_TEST_CASE(Pathy, IsPathy);
+    RUN_TEST_CASE(Pathy, FailOnPurpose)
 }
 
 

@@ -20,3 +20,8 @@ TEST(Pathy, IsPathy)
 
 }
 
+TEST(Pathy, FailOnPurpose)
+{
+    TEST_ASSERT_FALSE(isPath());
+
+}

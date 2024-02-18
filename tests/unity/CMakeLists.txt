@@ -12,28 +12,26 @@ include(FetchContent)
 
 
 # Locate test files
-file(GLOB SRC_FILES "${PROJECT_SOURCE_DIR}/src/*.c")
-list(FILTER SRC_FILES EXCLUDE REGEX "main.c")
+file(GLOB THIRD_PARTY_SOURCE 
+	"${PROJECT_SOURCE_DIR}/3rd-party/unity/*.c")
 
-file(GLOB TEST_SOURCES 
-    "${PROJECT_SOURCE_DIR}/tests/unity/*.c"
-    "${PROJECT_SOURCE_DIR}/tests/unity/tests/*.c"
-    "${PROJECT_SOURCE_DIR}/tests/unity/tests/runners/*.c"
-    )
-
-message("UNITY_SOURCES = ${UNITY_SOURCES}")
+file(GLOB TEST_SOURCE
+	"${PROJECT_SOURCE_DIR}/tests/unity/*.c"
+	"${PROJECT_SOURCE_DIR}/tests/unity/tests/*.c"
+	"${PROJECT_SOURCE_DIR}/tests/unity/runners/*.c")
 
 # Create test executable
 enable_testing()
 
 add_executable(${TEST_PROJECT_NAME} 
-  ${SRC_FILES} 
-  ${TEST_SOURCES})
+	${PROJECT_SOURCE} 
+	${THIRD_PARTY_SOURCE}
+	${TEST_SOURCE})
 
 target_include_directories (${TEST_PROJECT_NAME}
-  PUBLIC
-  ${PROJECT_SOURCE_DIR}/src
-  ${PROJECT_SOURCE_DIR}/tests/unity
+	PUBLIC
+	${PROJECT_SOURCE_DIR}/src
+	${PROJECT_SOURCE_DIR}/3rd-party/unity
 )
 
 

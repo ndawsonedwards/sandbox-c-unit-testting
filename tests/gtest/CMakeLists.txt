@@ -7,31 +7,29 @@ set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 set(TEST_PROJECT_NAME "${PROJECT_NAME}_gtest")
-# Include GoogleTest
-include(FetchContent)
 
 # Download and configure GoogleTest
+include(FetchContent)
 FetchContent_Declare(
   googletest
+  SOURCE_DIR ${PROJECT_SOURCE_DIR}/3rd-party/googletest
   GIT_REPOSITORY https://github.com/google/googletest.git
   GIT_TAG        v1.14.0
 )
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
 
-# Locate test files
-# Locate source files
-# file(GLOB SRC_FILES "${PROJECT_SOURCE_DIR}/src/*.c")
-# list(FILTER SRC_FILES EXCLUDE REGEX "main.c")
 
-file(GLOB TEST_SOURCES "${PROJECT_SOURCE_DIR}/tests/gtest/*.cc")
+# Locate source files
+file(GLOB TEST_SOURCE 
+    "${PROJECT_SOURCE_DIR}/tests/googletest/*.cc")
 
 # Create test executable
 enable_testing()
 
 add_executable(${TEST_PROJECT_NAME} 
-  ${SRC_FILES} 
-  ${TEST_SOURCES})
+  ${PROJECT_SOURCE} 
+  ${TEST_SOURCE})
 
 target_include_directories (${TEST_PROJECT_NAME}
   PUBLIC

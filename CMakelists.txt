@@ -10,14 +10,13 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 include_directories("src")
 
 # Locate source files
-file(GLOB SRC_FILES "${PROJECT_SOURCE_DIR}/src/*.c")
-list(FILTER SRC_FILES EXCLUDE REGEX "main.c")
+file(GLOB PROJECT_SOURCE "${PROJECT_SOURCE_DIR}/src/*.c")
+list(FILTER PROJECT_SOURCE EXCLUDE REGEX "main.c")
 
 include_directories(${PROJECT_SOURCE_DIR}/src)
-add_executable(${PROJECT_NAME} ${SRC_FILES} "src/main.c")
+add_executable(${PROJECT_NAME} ${PROJECT_SOURCE} "src/main.c")
 
 enable_testing()
 
-# add_subdirectory(tests/gtest)
-
+add_subdirectory(tests/gtest)
 add_subdirectory(tests/unity)
